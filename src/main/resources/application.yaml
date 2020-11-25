@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: development
+
+---
+
+spring:
+  profiles: development
+  datasource:
+    password: 'pass'
+    url: 'jdbc:mysql://localhost:3306/test?serverTimezone=UTC'
+    username: 'root'
+server:
+  port: 9093
+name: devel-YAML
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    password: 'pass'
+    url: 'jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC'
+    username: 'root'
+server:
+  port: 9092
+name: prod-YAML
