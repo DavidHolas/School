@@ -1,5 +1,6 @@
 package com.davidholas.TestApp.services;
 
+import com.davidholas.TestApp.entities.Course;
 import com.davidholas.TestApp.entities.Student;
 import com.davidholas.TestApp.entities.StudentResource;
 import com.davidholas.TestApp.exceptions.AppBaseException;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -51,6 +53,7 @@ public class StudentService {
             Student student = studentOpt.get();
 
             student.setName(studentResource.getName());
+            student.setCredits(studentResource.getCredits());
 
             studentRepository.save(student);
         }

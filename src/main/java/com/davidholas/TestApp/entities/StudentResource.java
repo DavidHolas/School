@@ -6,9 +6,12 @@ public class StudentResource {
 
     private String name;
 
-    public StudentResource(Long id, String name) {
+    private int credits;
+
+    public StudentResource(Long id, String name, int credits) {
         this.id = id;
         this.name = name;
+        this.credits = credits;
     }
 
     public Long getId() {
@@ -25,5 +28,13 @@ public class StudentResource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 }

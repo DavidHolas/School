@@ -14,6 +14,8 @@ public class Student {
 
     private String name;
 
+    private int credits = 0;
+
     @JsonIgnore
     @ManyToMany()
     @JoinTable(name = "student_course",
@@ -52,6 +54,14 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 
     public Set<Course> getCourses() {
