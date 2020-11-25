@@ -1,12 +1,15 @@
 package com.davidholas.TestApp.services;
 
 import com.davidholas.TestApp.entities.Course;
+import com.davidholas.TestApp.entities.CourseResource;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.davidholas.TestApp.repositories.CourseRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +33,13 @@ public class CourseService {
         return course.get();
     }
 
-    public void addCourse(String name) {
+    public void addCourse(CourseResource courseResource) {
 
-        Course course = new Course(name);
+        String name = courseResource.getName();
+        LocalDateTime beginning = courseResource.getBeginning();
+        LocalDateTime end = courseResource.getEnd();
+
+        Course course = new Course(name, beginning, end);
 
         courseRepository.save(course);
     }
@@ -40,5 +47,20 @@ public class CourseService {
     public void deleteCourse(Long id) {
 
         courseRepository.deleteById(id);
+    }
+
+    public void updateCourse(CourseResource courseResource) {
+
+        Optional<Course> courseOpt = courseRepository.findById(courseResource.getId());
+
+        if(courseOpt.isPresent()) {
+            Course course = courseOpt.get();
+
+            course.setName(course.getName());
+            course.setBeginning(course.getBeginning());
+            course.setEnd(course.getEnd());
+
+            courseRepository.save(course);
+        }
     }
 }

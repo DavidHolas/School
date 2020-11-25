@@ -3,6 +3,7 @@ package com.davidholas.TestApp.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,10 @@ public class Course {
 
     private String name;
 
+    private LocalDateTime beginning;
+
+    private LocalDateTime end;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     @JsonBackReference
@@ -24,8 +29,10 @@ public class Course {
 
     public Course() {}
 
-    public Course(String name) {
+    public Course(String name, LocalDateTime beginning, LocalDateTime end) {
         this.name = name;
+        this.beginning = beginning;
+        this.end = end;
     }
 
     public Long getId() {
@@ -42,6 +49,22 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDateTime getBeginning() {
+        return beginning;
+    }
+
+    public void setBeginning(LocalDateTime beginning) {
+        this.beginning = beginning;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
     }
 
     public Teacher getTeacher() {

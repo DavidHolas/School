@@ -1,6 +1,7 @@
 package com.davidholas.TestApp.controllers;
 
 import com.davidholas.TestApp.entities.Course;
+import com.davidholas.TestApp.entities.CourseResource;
 import com.davidholas.TestApp.services.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +35,10 @@ public class CourseController {
         return new ResponseEntity<>(course, HttpStatus.OK);
     }
 
-    @PostMapping("/addCourse/{name}")
-    public ResponseEntity addCourse(@PathVariable String name) {
+    @PostMapping("/addCourse/")
+    public ResponseEntity addCourse(@RequestBody CourseResource courseResource) {
 
-        courseService.addCourse(name);
+        courseService.addCourse(courseResource);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -48,5 +49,13 @@ public class CourseController {
         courseService.deleteCourse(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("update")
+    public ResponseEntity updateCourse(@RequestBody CourseResource courseResource) {
+
+        courseService.updateCourse(courseResource);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
