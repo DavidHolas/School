@@ -13,8 +13,11 @@ import java.util.Optional;
 @Transactional
 public class TeacherService {
 
-    @Autowired
     TeacherRepository teacherRepository;
+
+    public TeacherService(TeacherRepository teacherRepository) {
+        this.teacherRepository = teacherRepository;
+    }
 
     public List<Teacher> getAllTeachers() {
 

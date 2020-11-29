@@ -6,19 +6,24 @@ import com.davidholas.TestApp.entities.StudentResource;
 import com.davidholas.TestApp.exceptions.AppBaseException;
 import com.davidholas.TestApp.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.Set;
 
 @Service
 @Transactional
 public class StudentService {
 
-    @Autowired
     StudentRepository studentRepository;
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public List<Student> getAllStudents() {
 

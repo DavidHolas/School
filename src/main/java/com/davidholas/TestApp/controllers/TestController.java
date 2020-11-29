@@ -6,7 +6,6 @@ import com.davidholas.TestApp.entities.Teacher;
 import com.davidholas.TestApp.repositories.CourseRepository;
 import com.davidholas.TestApp.repositories.StudentRepository;
 import com.davidholas.TestApp.repositories.TeacherRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/test")
 public class TestController {
 
-    @Autowired
     StudentRepository studentRepository;
 
-    @Autowired
     CourseRepository courseRepository;
 
-    @Autowired
     TeacherRepository teacherRepository;
+
+    public TestController(StudentRepository studentRepository, CourseRepository courseRepository, TeacherRepository teacherRepository) {
+        this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
+        this.teacherRepository = teacherRepository;
+    }
 
     @GetMapping("/student_course/{studentId}/{courseId}")
     public void studentCourse(@PathVariable Long studentId, @PathVariable Long courseId) {

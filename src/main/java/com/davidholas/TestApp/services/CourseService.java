@@ -17,8 +17,11 @@ import java.util.Optional;
 @Transactional
 public class CourseService {
 
-    @Autowired
     CourseRepository courseRepository;
+
+    public CourseService(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
 
     public List<Course> getAllCourses() {
 
